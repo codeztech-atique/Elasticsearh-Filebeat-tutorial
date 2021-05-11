@@ -1,0 +1,30 @@
+loadbalanceedit
+If set to true and multiple Logstash hosts are configured, the output plugin load balances published events onto all Logstash hosts. If set to false, the output plugin sends all events to only one host (determined at random) and will switch to another host if the selected one becomes unresponsive. The default value is false.
+
+
+
+output.logstash:
+  hosts: ["localhost:5044", "localhost:5045"]
+  loadbalance: true
+
+
+bin/logstash -/Users/Atique/Desktop/Filebeta_Tutorail/filebeat-logstash.conf &
+
+bin/logstash -e /Users/Atique/Desktop/Filebeta_Tutorail/filebeat-logstash.conf &
+
+or go to the folder inside bin then run
+
+./logstash -f /Users/Atique/Desktop/Filebeta_Tutorail/filebeat-logstash.conf
+
+
+./filebeat -e -c filebeat.yml &
+
+
+  #If log line contains tab character followed by 'at' then we will tag that entry as stacktrace
+  #if [message] =~ "\tat" {
+  #  grok {
+  #    match => ["message", "^(\tat)"]
+  #    add_tag => ["stacktrace"]
+  #  }
+  # }
+    
